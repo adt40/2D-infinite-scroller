@@ -24,7 +24,7 @@ public class Walker extends NonPlayerEntity {
         super(position, TILE_TYPES);
 
         Tile tile = Terrain.grid.get(position);
-        tile.setOccupiedBy(this);
+        tile.addOccupier(this);
 
         Timer timer = new Timer();
         WalkerAI walkerAI = new WalkerAI(this);
@@ -40,13 +40,15 @@ public class Walker extends NonPlayerEntity {
     }
 
     @Override
-    public void click() {
+    public boolean click() {
         InventoryItem item = InstantiatedEntities.player.getSelectedItem();
         Double distance = InstantiatedEntities.player.getGridPosition().distanceTo(getGridPosition());
         if (item instanceof Sword && distance <= 1) {
             Tile tile = Terrain.grid.get(getGridPosition());
-            tile.setOccupiedBy(null);
+            tile.removeOccupier(this);
             InstantiatedEntities.nonPlayerEntities.remove(this);
+            return true;
         }
+        return false;
     }
 }

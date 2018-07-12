@@ -23,7 +23,7 @@ public abstract class Entity {
         return position;
     }
 
-    void setGridPosition(Vector gridPosition) {
+    public void setGridPosition(Vector gridPosition) {
         this.position = gridPosition;
     }
 
@@ -56,8 +56,8 @@ public abstract class Entity {
         Tile nextTile = Terrain.grid.get(nextPosition);
         if (isTileWalkable(nextTile)) {
             Tile tile = Terrain.grid.get(position);
-            tile.setOccupiedBy(null);
-            nextTile.setOccupiedBy(this);
+            tile.removeOccupier(this);
+            nextTile.addOccupier(this);
             position = nextPosition;
             moved = true;
         }

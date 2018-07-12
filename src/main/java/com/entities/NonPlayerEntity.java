@@ -37,5 +37,9 @@ public abstract class NonPlayerEntity extends Entity {
                 (Terrain.grid.get(right) != null && isTileWalkable(Terrain.grid.get(right))));
     }
 
-    public abstract void click();
+    /**
+     *
+     * @return true if this entity was removed as a result of the click
+     */
+    public abstract boolean click();
 }

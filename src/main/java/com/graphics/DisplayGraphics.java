@@ -7,9 +7,9 @@ import main.java.com.util.Vector;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class DisplayGraphics extends JPanel implements MouseListener, MouseWheelListener {
 
@@ -18,13 +18,13 @@ public class DisplayGraphics extends JPanel implements MouseListener, MouseWheel
     private final Double frequency;
     private final INoiseGenerator noiseGenerator;
 
+    private boolean removing = false;
+
     public DisplayGraphics() {
         numOctaves = 3;
         frequency = 0.1;
         gridSize = 24;
         noiseGenerator = new SimplexNoise();
-        InstantiatedEntities.nonPlayerEntities = new ArrayList<>();
-        InstantiatedEntities.player = new Player();
         setKeyBindings();
         addMouseListener(this);
         addMouseWheelListener(this);
@@ -169,9 +169,15 @@ public class DisplayGraphics extends JPanel implements MouseListener, MouseWheel
         Vector selectedLocation = new Vector(x, y);
         Tile tile = Terrain.grid.get(selectedLocation);
         if (tile.isOccupied()) {
-            Entity selectedEntity = tile.getOccupyingEntity();
-            if (selectedEntity instanceof NonPlayerEntity) {
-                ((NonPlayerEntity) selectedEntity).click();
+            List<Entity> selectedEntity = tile.getOccupyingEntities();
+            int i = 0;
+            while (i < selectedEntity.size()) {
+                if (selectedEntity.get(i) instanceof NonPlayerEntity) {
+                    //if the selected entity was not removed, increment i
+                    if (!((NonPlayerEntity) selectedEntity.get(i)).click()) {
+                        i++;
+                    }
+                }
             }
         }
     }
