@@ -7,8 +7,11 @@ import javax.swing.*;
 public class Runner {
     public static void main(String args[]) {
         int windowSize = 500;
+        int gridSize = 16;
+        int numOctaves = 5;
+        Double frequency = 0.03;
 
-        DisplayGraphics panel = new DisplayGraphics();
+        DisplayGraphics panel = new DisplayGraphics(gridSize, numOctaves, frequency);
         JFrame frame = new JFrame("Infinite 2D World");
         frame.getContentPane().add(panel);
         frame.setSize(windowSize, windowSize);

@@ -6,50 +6,58 @@ import main.java.com.util.Vector;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
-import java.util.List;
 import java.util.Timer;
 
-public class DisplayGraphics extends JPanel implements MouseListener, MouseWheelListener {
+public class DisplayGraphics extends JPanel {
 
-    private final int gridSize;
+    private int gridSize;
     private final int numOctaves;
     private final Double frequency;
     private final INoiseGenerator noiseGenerator;
 
-    private boolean removing = false;
+    public DisplayGraphics(int gridSize, int numOctaves, Double frequency) {
+        this.gridSize = gridSize;
+        this.numOctaves = numOctaves;
+        this.frequency = frequency;
 
-    public DisplayGraphics() {
-        numOctaves = 3;
-        frequency = 0.1;
-        gridSize = 24;
         noiseGenerator = new SimplexNoise();
-        setKeyBindings();
-        addMouseListener(this);
-        addMouseWheelListener(this);
+
+        UserInputManager userInputManager = new UserInputManager(this);
+        addMouseListener(userInputManager);
+        addMouseWheelListener(userInputManager);
+
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (InstantiatedEntities.player.hasChanged() || InstantiatedEntities.nonPlayerEntities.stream().anyMatch(NonPlayerEntity::hasChanged)) {
+                if (EntityManager.player.hasChanged() || EntityManager.nonPlayerEntities.stream().anyMatch(NonPlayerEntity::hasChanged)) {
                     repaint();
                 }
             }
         }, 50, 50);
     }
 
+    void scaleGridSize(Double amount) {
+        gridSize *= amount;
+    }
+
+    int getGridSize() {
+        return gridSize;
+    }
+
     @Override
     public void paint(Graphics g) {
-        Vector offsetFromOrigin = InstantiatedEntities.player.getGridPosition().multiplyByScalar(gridSize);
+        Vector offsetFromOrigin = EntityManager.player.getGridPosition().multiplyByScalar(gridSize);
         Vector offsetFromGrid = new Vector(offsetFromOrigin.getX() % gridSize, offsetFromOrigin.getY() % gridSize);
 
         int halfGridWidth = (int) (getWidth() / gridSize / 2.0) + 1;
         int halfGridHeight = (int) (getHeight() / gridSize / 2.0) + 1;
 
         drawGrid(g, offsetFromOrigin, offsetFromGrid, halfGridWidth, halfGridHeight);
-        InstantiatedEntities.player.paint(g, halfGridWidth * gridSize, halfGridHeight * gridSize, gridSize);
+        EntityManager.player.paint(g, halfGridWidth * gridSize, halfGridHeight * gridSize, gridSize);
         drawNonPlayerEntities(g, offsetFromOrigin, offsetFromGrid, halfGridWidth, halfGridHeight);
+        drawDroppableEntities(g, offsetFromOrigin, offsetFromGrid, halfGridWidth, halfGridHeight);
     }
 
     private void drawGrid(Graphics g, Vector offsetFromOrigin, Vector offsetFromGrid, int halfGridWidth, int halfGridHeight) {
@@ -65,7 +73,15 @@ public class DisplayGraphics extends JPanel implements MouseListener, MouseWheel
     }
 
     private void drawNonPlayerEntities(Graphics g, Vector offsetFromOrigin, Vector offsetFromGrid, int halfGridWidth, int halfGridHeight) {
-        applyToGrid(g, offsetFromOrigin, offsetFromGrid, halfGridWidth, halfGridHeight, (graphics, xPos, yPos, gridCoordinate) -> InstantiatedEntities.nonPlayerEntities.forEach(entity -> {
+        applyToGrid(g, offsetFromOrigin, offsetFromGrid, halfGridWidth, halfGridHeight, (graphics, xPos, yPos, gridCoordinate) -> EntityManager.nonPlayerEntities.forEach(entity -> {
+            if (entity.getGridPosition().equals(gridCoordinate)) {
+                entity.paint(graphics, xPos, yPos, gridSize);
+            }
+        }));
+    }
+
+    private void drawDroppableEntities(Graphics g, Vector offsetFromOrigin, Vector offsetFromGrid, int halfGridWidth, int halfGridHeight) {
+        applyToGrid(g, offsetFromOrigin, offsetFromGrid, halfGridWidth, halfGridHeight, (graphics, xPos, yPos, gridCoordinate) -> EntityManager.droppableEntities.forEach(entity -> {
             if (entity.getGridPosition().equals(gridCoordinate)) {
                 entity.paint(graphics, xPos, yPos, gridSize);
             }
@@ -108,91 +124,7 @@ public class DisplayGraphics extends JPanel implements MouseListener, MouseWheel
             Double noiseValue = noise / postScaling;
             Tile tile = new Tile(noiseValue);
             Terrain.grid.put(gridCoordinate, tile);
-            spawnEntities(tile.getTileType(), gridCoordinate);
+            Terrain.spawnEntities(tile.getTileType(), gridCoordinate);
         }
-    }
-
-    private void spawnEntities(TileType tileType, Vector gridCoordinate) {
-        if (NonPlayerEntity.shouldSpawn(tileType, Walker.class)) {
-            InstantiatedEntities.nonPlayerEntities.add(new Walker(gridCoordinate));
-        } else if (NonPlayerEntity.shouldSpawn(tileType, Flier.class)) {
-            InstantiatedEntities.nonPlayerEntities.add(new Flier(gridCoordinate));
-        } else if (NonPlayerEntity.shouldSpawn(tileType, Tree.class)) {
-            InstantiatedEntities.nonPlayerEntities.add(new Tree(gridCoordinate));
-        }
-    }
-
-
-    //TODO: Abstract out user inputs, this class is messy enough as is
-    private void setKeyBindings() {
-        ActionMap actionMap = getActionMap();
-        InputMap inputMap = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-
-        String w = "0";
-        String s = "1";
-        String a = "2";
-        String d = "3";
-
-
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0), w);
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), s);
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0), a);
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0), d);
-
-        actionMap.put(w, new KeyAction(w));
-        actionMap.put(s, new KeyAction(s));
-        actionMap.put(a, new KeyAction(a));
-        actionMap.put(d, new KeyAction(d));
-    }
-
-    private class KeyAction extends AbstractAction {
-        KeyAction(String actionCommand) {
-            putValue(ACTION_COMMAND_KEY, actionCommand);
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent actionEvt) {
-            InstantiatedEntities.player.move(Vector.getVectorFromDirectionInt(Integer.parseInt(actionEvt.getActionCommand())));
-        }
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        Vector offsetFromOrigin = InstantiatedEntities.player.getGridPosition().multiplyByScalar(gridSize);
-
-        int halfGridWidth = (int) (getWidth() / gridSize / 2.0) + 1;
-        int halfGridHeight = (int) (getHeight() / gridSize / 2.0) + 1;
-
-        int x = (int)(offsetFromOrigin.getX() / gridSize) - halfGridWidth + (e.getX() / gridSize);
-        int y = (int) (offsetFromOrigin.getY() / gridSize) - halfGridHeight + (e.getY() / gridSize);
-
-        Vector selectedLocation = new Vector(x, y);
-        Tile tile = Terrain.grid.get(selectedLocation);
-        if (tile.isOccupied()) {
-            List<Entity> selectedEntity = tile.getOccupyingEntities();
-            int i = 0;
-            while (i < selectedEntity.size()) {
-                if (selectedEntity.get(i) instanceof NonPlayerEntity) {
-                    //if the selected entity was not removed, increment i
-                    if (!((NonPlayerEntity) selectedEntity.get(i)).click()) {
-                        i++;
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {}
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-    @Override
-    public void mouseExited(MouseEvent e) {}
-
-    @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {
-        InstantiatedEntities.player.incrementSelectedItemIndexBy(e.getWheelRotation());
     }
 }

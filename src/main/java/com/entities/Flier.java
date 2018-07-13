@@ -16,9 +16,8 @@ import java.util.Timer;
 
 public class Flier extends NonPlayerEntity {
 
-    //accessed via reflection in NonPlayerEntity::shouldSpawn
-    static final List<TileType> TILE_TYPES = Arrays.asList(TileType.WATER, TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
-    static final Double SPAWN_PROBABILITY = 0.005;
+    private static final List<TileType> TILE_TYPES = Arrays.asList(TileType.WATER, TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
+    private static final Double SPAWN_PROBABILITY = 0.005;
 
     public Flier(Vector position) {
         super(position, TILE_TYPES);
@@ -33,6 +32,10 @@ public class Flier extends NonPlayerEntity {
         timer.schedule(flierAI, 500, period);
     }
 
+    public static boolean shouldSpawn(TileType tileType, Vector gridCoordinate) {
+        return TILE_TYPES.contains(tileType) && (new Random()).nextDouble() <= SPAWN_PROBABILITY;
+    }
+
     @Override
     public void paint(Graphics g, int xPos, int yPos, int gridSize) {
         g.setColor(new Color(126, 55, 72));
@@ -41,12 +44,12 @@ public class Flier extends NonPlayerEntity {
 
     @Override
     public boolean click() {
-        InventoryItem item = InstantiatedEntities.player.getSelectedItem();
-        Double distance = InstantiatedEntities.player.getGridPosition().distanceTo(getGridPosition());
+        InventoryItem item = EntityManager.player.getSelectedItem();
+        Double distance = EntityManager.player.getGridPosition().distanceTo(getGridPosition());
         if (item instanceof Bow && distance <= ((Bow) item).getRange()) {
             Tile tile = Terrain.grid.get(getGridPosition());
             tile.removeOccupier(this);
-            InstantiatedEntities.nonPlayerEntities.remove(this);
+            EntityManager.nonPlayerEntities.remove(this);
             return true;
         }
         return false;

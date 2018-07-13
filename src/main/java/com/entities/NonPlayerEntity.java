@@ -13,18 +13,6 @@ public abstract class NonPlayerEntity extends Entity {
         super(position, walkableTileTypes);
     }
 
-    @SuppressWarnings("unchecked")
-    public static <T extends NonPlayerEntity> boolean shouldSpawn(TileType tileType, Class<T> nonPlayerEntity) {
-        try {
-            List<TileType> spawnTileTypes = (List<TileType>) nonPlayerEntity.getDeclaredField("TILE_TYPES").get(null);
-            Double spawnProbability = (Double) nonPlayerEntity.getDeclaredField("SPAWN_PROBABILITY").get(null);
-            return spawnTileTypes.contains(tileType) && (new Random()).nextDouble() <= spawnProbability;
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     public boolean isTrapped() {
         Vector up = getGridPosition().add(new Vector(0, -1));
         Vector left = getGridPosition().add(new Vector(-1, 0));
