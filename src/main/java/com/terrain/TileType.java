@@ -57,7 +57,7 @@ public enum TileType {
         } else if (this.equals(TileType.GRASS3)) {
             return new Color(66, 145, 20);
         } else if (this.equals(TileType.MOUNTAIN)) {
-            return new Color(129, 130, 148);
+            return new Color(131, 148, 108);
         } else {
             return Color.WHITE;
         }

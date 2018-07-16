@@ -16,11 +16,12 @@ import java.util.Timer;
 
 public class Walker extends NonPlayerEntity {
 
-    private static final List<TileType> TILE_TYPES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST);
+    private static final List<TileType> SPAWNABLE_TILES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST);
+    private static final List<TileType> WALKABLE_TILES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
     private static final Double SPAWN_PROBABILITY = 0.01;
 
     public Walker(Vector position) {
-        super(position, TILE_TYPES);
+        super(position, SPAWNABLE_TILES, WALKABLE_TILES);
 
         Tile tile = Terrain.grid.get(position);
         tile.addOccupier(this);
@@ -33,7 +34,7 @@ public class Walker extends NonPlayerEntity {
     }
 
     public static boolean shouldSpawn(TileType tileType, Vector gridCoordinate) {
-        return TILE_TYPES.contains(tileType) && (new Random()).nextDouble() <= SPAWN_PROBABILITY;
+        return SPAWNABLE_TILES.contains(tileType) && (new Random()).nextDouble() <= SPAWN_PROBABILITY;
     }
 
     @Override
@@ -45,8 +46,7 @@ public class Walker extends NonPlayerEntity {
     @Override
     public boolean click() {
         InventoryItem item = EntityManager.player.getSelectedItem();
-        Double distance = EntityManager.player.getGridPosition().distanceTo(getGridPosition());
-        if (item instanceof Sword && distance <= 1) {
+        if (item instanceof Sword && ((Sword) item).isWithinRange(getGridPosition())) {
             Tile tile = Terrain.grid.get(getGridPosition());
             tile.removeOccupier(this);
             EntityManager.nonPlayerEntities.remove(this);

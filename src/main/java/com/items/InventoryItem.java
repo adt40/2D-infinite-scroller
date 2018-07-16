@@ -1,5 +1,7 @@
 package main.java.com.items;
 
+import main.java.com.entities.EntityManager;
+
 public abstract class InventoryItem {
 
     private String name;
@@ -19,6 +21,11 @@ public abstract class InventoryItem {
     }
 
     public void addAmount(int amount) {
-        this.amount += amount;
+        if (this.amount > 0) {
+            this.amount += amount;
+        }
+        if (this.amount <= 0) {
+            EntityManager.player.removeItem(this);
+        }
     }
 }

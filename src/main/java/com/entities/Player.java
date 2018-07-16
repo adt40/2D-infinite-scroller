@@ -15,18 +15,20 @@ import java.util.Optional;
 
 public class Player extends Entity {
 
-    static final List<TileType> TILE_TYPES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST);
+    static final List<TileType> SPAWNABLE_TILES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST);
+    static final List<TileType> WALKABLE_TILES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
 
     private ArrayList<InventoryItem> items;
     private int selectedItemIndex;
 
     public Player() {
-        super(new Vector(0, 0), TILE_TYPES);
+        super(new Vector(0, 0), SPAWNABLE_TILES, WALKABLE_TILES);
         selectedItemIndex = 0;
         items = new ArrayList<>();
         items.add(new Axe());
+        items.add(new PickAxe());
         items.add(new Sword());
-        items.add(new Bow(5));
+        items.add(new Bow());
     }
 
     public ArrayList<InventoryItem> getItems() {
@@ -42,7 +44,14 @@ public class Player extends Entity {
         }
     }
 
-    InventoryItem getSelectedItem() {
+    public void removeItem(InventoryItem item) {
+        items.remove(item);
+        if (selectedItemIndex >= items.size()) {
+            selectedItemIndex--;
+        }
+    }
+
+    public InventoryItem getSelectedItem() {
         return items.get(selectedItemIndex);
     }
 

@@ -9,8 +9,8 @@ import java.util.Random;
 
 public abstract class NonPlayerEntity extends Entity {
 
-    NonPlayerEntity(Vector position, List<TileType> walkableTileTypes) {
-        super(position, walkableTileTypes);
+    NonPlayerEntity(Vector position, List<TileType> spawnableTileTypes, List<TileType> walkableTileTypes) {
+        super(position, spawnableTileTypes, walkableTileTypes);
     }
 
     public boolean isTrapped() {

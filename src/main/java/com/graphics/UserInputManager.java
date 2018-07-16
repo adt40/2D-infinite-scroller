@@ -3,12 +3,14 @@ package main.java.com.graphics;
 import main.java.com.entities.Entity;
 import main.java.com.entities.EntityManager;
 import main.java.com.entities.NonPlayerEntity;
+import main.java.com.items.PlaceableItem;
 import main.java.com.terrain.Terrain;
 import main.java.com.terrain.Tile;
 import main.java.com.util.Vector;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.Arrays;
 import java.util.List;
 
 class UserInputManager implements MouseListener, MouseWheelListener {
@@ -125,15 +127,21 @@ class UserInputManager implements MouseListener, MouseWheelListener {
         Vector selectedLocation = new Vector(x, y);
         Tile tile = Terrain.grid.get(selectedLocation);
         if (tile.isOccupied()) {
-            List<Entity> selectedEntity = tile.getOccupyingEntities();
-            int i = 0;
-            while (i < selectedEntity.size()) {
-                if (selectedEntity.get(i) instanceof NonPlayerEntity) {
-                    //if the selected entity was not removed, increment i
-                    if (!((NonPlayerEntity) selectedEntity.get(i)).click()) {
-                        i++;
+            List<Entity> selectedEntities = tile.getOccupyingEntities();
+            if (e.getButton() == 1) {
+                int i = 0;
+                while (i < selectedEntities.size()) {
+                    if (selectedEntities.get(i) instanceof NonPlayerEntity) {
+                        //if the selected entity was not removed, increment i
+                        if (!((NonPlayerEntity) selectedEntities.get(i)).click()) {
+                            i++;
+                        }
                     }
                 }
+            }
+        } else {
+            if (e.getButton() == 3 && EntityManager.player.getSelectedItem() instanceof PlaceableItem) {
+                ((PlaceableItem) EntityManager.player.getSelectedItem()).placeAt(selectedLocation);
             }
         }
     }

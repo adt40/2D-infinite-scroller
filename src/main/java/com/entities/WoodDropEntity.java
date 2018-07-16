@@ -6,9 +6,9 @@ import main.java.com.util.Vector;
 import java.awt.*;
 
 
-public class WoodEntity extends DroppableEntity {
+public class WoodDropEntity extends DroppableEntity {
 
-    public WoodEntity(Vector gridCoordinate) {
+    public WoodDropEntity(Vector gridCoordinate) {
         super(gridCoordinate);
     }
 

@@ -1,0 +1,28 @@
+package main.java.com.entities;
+
+import main.java.com.items.StoneItem;
+import main.java.com.util.Vector;
+
+import java.awt.*;
+
+public class StoneDropEntity extends DroppableEntity {
+
+    public StoneDropEntity(Vector gridCoordinate) {
+        super(gridCoordinate);
+    }
+
+    @Override
+    public void paint(Graphics g, int xPos, int yPos, int gridSize) {
+        g.setColor(new Color(167, 167, 165));
+        int size = (int)(gridSize * 0.5);
+        int offset = (gridSize - size) / 2;
+        g.fillRect(xPos + offset, yPos + offset, size, size);
+    }
+
+
+    @Override
+    public void pickUp() {
+        EntityManager.player.addItem(new StoneItem());
+        EntityManager.droppableEntities.remove(this);
+    }
+}

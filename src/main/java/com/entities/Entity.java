@@ -12,10 +12,12 @@ public abstract class Entity {
 
     private Vector position;
     private boolean moved;
+    private final List<TileType> spawnableTileTypes;
     private final List<TileType> walkableTileTypes;
 
-    Entity(Vector position, List<TileType> walkableTileTypes) {
+    Entity(Vector position, List<TileType> spawnableTileTypes, List<TileType> walkableTileTypes) {
         this.position = position;
+        this.spawnableTileTypes = spawnableTileTypes;
         this.walkableTileTypes = walkableTileTypes;
     }
 
@@ -26,6 +28,8 @@ public abstract class Entity {
     public void setGridPosition(Vector gridPosition) {
         this.position = gridPosition;
     }
+
+    public List<TileType> getSpawnableTileTypes() { return spawnableTileTypes; }
 
     public List<TileType> getWalkableTileTypes() {
         return walkableTileTypes;
@@ -42,6 +46,13 @@ public abstract class Entity {
         } else {
             return false;
         }
+    }
+
+    public boolean isTileSpawnable(Tile tile) {
+        if (tile != null) {
+            return spawnableTileTypes.contains(tile.getTileType()) && !tile.isOccupied();
+        }
+        return false;
     }
 
     public boolean isTileWalkable(Tile tile) {

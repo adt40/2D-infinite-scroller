@@ -2,14 +2,8 @@ package main.java.com.items.tools;
 
 public class Bow extends Tool {
 
-    private int range;
 
-    public Bow(int range) {
-        super(1.0, 0.1, "Bow");
-        this.range = range;
-    }
-
-    public int getRange() {
-        return range;
+    public Bow() {
+        super(1.0, 0.1, 5.0, "Bow");
     }
 }
