@@ -1,7 +1,7 @@
 package main.java.com.items;
 
 import main.java.com.entities.EntityManager;
-import main.java.com.entities.WoodBlockEntity;
+import main.java.com.entities.materials.WoodBlockEntity;
 import main.java.com.terrain.Terrain;
 import main.java.com.util.Vector;
 

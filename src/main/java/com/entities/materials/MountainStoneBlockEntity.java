@@ -1,4 +1,4 @@
-package main.java.com.entities;
+package main.java.com.entities.materials;
 
 import main.java.com.terrain.Terrain;
 import main.java.com.terrain.Tile;

@@ -1,5 +1,8 @@
-package main.java.com.entities;
+package main.java.com.entities.alive;
 
+import main.java.com.entities.Entity;
+import main.java.com.entities.EntityManager;
+import main.java.com.entities.droppable.DroppableEntity;
 import main.java.com.items.InventoryItem;
 import main.java.com.items.tools.*;
 import main.java.com.terrain.Terrain;
@@ -21,14 +24,15 @@ public class Player extends Entity {
     private ArrayList<InventoryItem> items;
     private int selectedItemIndex;
 
-    public Player() {
-        super(new Vector(0, 0), SPAWNABLE_TILES, WALKABLE_TILES);
+    public Player(Vector position) {
+        super(position, SPAWNABLE_TILES, WALKABLE_TILES);
         selectedItemIndex = 0;
         items = new ArrayList<>();
         items.add(new Axe());
         items.add(new PickAxe());
         items.add(new Sword());
         items.add(new Bow());
+        items.add(new FishingRod());
     }
 
     public ArrayList<InventoryItem> getItems() {

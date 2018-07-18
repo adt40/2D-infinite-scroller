@@ -1,5 +1,6 @@
-package main.java.com.entities;
+package main.java.com.entities.droppable;
 
+import main.java.com.entities.EntityManager;
 import main.java.com.items.StoneItem;
 import main.java.com.util.Vector;
 

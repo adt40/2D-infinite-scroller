@@ -1,5 +1,6 @@
-package main.java.com.entities;
+package main.java.com.entities.alive;
 
+import main.java.com.entities.materials.WoodenEntity;
 import main.java.com.terrain.Terrain;
 import main.java.com.terrain.Tile;
 import main.java.com.terrain.TileType;

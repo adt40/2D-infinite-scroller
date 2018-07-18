@@ -1,8 +1,10 @@
-package main.java.com.entities;
+package main.java.com.entities.alive;
 
-import main.java.com.ai.FlierAI;
+import main.java.com.ai.WalkerAI;
+import main.java.com.entities.EntityManager;
+import main.java.com.entities.NonPlayerEntity;
 import main.java.com.items.InventoryItem;
-import main.java.com.items.tools.Bow;
+import main.java.com.items.tools.Sword;
 import main.java.com.terrain.Terrain;
 import main.java.com.terrain.Tile;
 import main.java.com.terrain.TileType;
@@ -14,25 +16,25 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 
-public class FlierEntity extends NonPlayerEntity {
+public class WalkerEntity extends NonPlayerEntity {
 
-    private static final List<TileType> SPAWNABLE_TILES = Arrays.asList(TileType.WATER, TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
-    private static final List<TileType> WALKABLE_TILES = Arrays.asList(TileType.WATER, TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
-    private static final Double SPAWN_PROBABILITY = 0.005;
+    private static final List<TileType> SPAWNABLE_TILES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST);
+    private static final List<TileType> WALKABLE_TILES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
+    private static final Double SPAWN_PROBABILITY = 0.01;
 
     private Timer timer;
 
-    public FlierEntity(Vector position) {
+    public WalkerEntity(Vector position) {
         super(position, SPAWNABLE_TILES, WALKABLE_TILES);
 
         Tile tile = Terrain.grid.get(position);
         tile.addOccupier(this);
 
         timer = new Timer();
-        FlierAI flierAI = new FlierAI(this);
+        WalkerAI walkerAI = new WalkerAI(this);
         Random random = new Random();
-        int period = random.nextInt(750) + 250;
-        timer.schedule(flierAI, 500, period);
+        int period = random.nextInt(1000) + 500;
+        timer.schedule(walkerAI, 500, period);
     }
 
     public static boolean shouldSpawn(TileType tileType, Vector gridCoordinate) {
@@ -41,18 +43,15 @@ public class FlierEntity extends NonPlayerEntity {
 
     @Override
     public void paint(Graphics g, int xPos, int yPos, int gridSize) {
-        g.setColor(new Color(126, 55, 72));
+        g.setColor(Color.BLACK);
         g.fillOval(xPos, yPos, gridSize, gridSize);
     }
 
     @Override
     public boolean click() {
         InventoryItem item = EntityManager.player.getSelectedItem();
-        if (item instanceof Bow && ((Bow) item).isWithinRange(getGridPosition())) {
-            Tile tile = Terrain.grid.get(getGridPosition());
-            tile.removeOccupier(this);
-            EntityManager.nonPlayerEntities.remove(this);
-            timer.cancel();
+        if (item instanceof Sword && ((Sword) item).isWithinRange(getGridPosition())) {
+            remove(timer);
             return true;
         }
         return false;

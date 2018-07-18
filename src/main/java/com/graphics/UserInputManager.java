@@ -10,7 +10,6 @@ import main.java.com.util.Vector;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.Arrays;
 import java.util.List;
 
 class UserInputManager implements MouseListener, MouseWheelListener {
@@ -136,6 +135,8 @@ class UserInputManager implements MouseListener, MouseWheelListener {
                         if (!((NonPlayerEntity) selectedEntities.get(i)).click()) {
                             i++;
                         }
+                    } else {
+                        i++;
                     }
                 }
             }

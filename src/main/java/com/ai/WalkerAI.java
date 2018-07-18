@@ -1,6 +1,6 @@
 package main.java.com.ai;
 
-import main.java.com.entities.WalkerEntity;
+import main.java.com.entities.alive.WalkerEntity;
 
 import java.util.TimerTask;
 

@@ -15,7 +15,7 @@ public abstract class Entity {
     private final List<TileType> spawnableTileTypes;
     private final List<TileType> walkableTileTypes;
 
-    Entity(Vector position, List<TileType> spawnableTileTypes, List<TileType> walkableTileTypes) {
+    public Entity(Vector position, List<TileType> spawnableTileTypes, List<TileType> walkableTileTypes) {
         this.position = position;
         this.spawnableTileTypes = spawnableTileTypes;
         this.walkableTileTypes = walkableTileTypes;
@@ -35,7 +35,7 @@ public abstract class Entity {
         return walkableTileTypes;
     }
 
-    void setMoved(boolean moved) {
+    public void setMoved(boolean moved) {
         this.moved = moved;
     }
 

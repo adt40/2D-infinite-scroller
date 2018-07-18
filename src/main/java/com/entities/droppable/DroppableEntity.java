@@ -1,5 +1,6 @@
-package main.java.com.entities;
+package main.java.com.entities.droppable;
 
+import main.java.com.entities.Entity;
 import main.java.com.util.Vector;
 
 import java.util.Collections;

@@ -1,15 +1,16 @@
 package main.java.com.entities;
 
 import main.java.com.terrain.Terrain;
+import main.java.com.terrain.Tile;
 import main.java.com.terrain.TileType;
 import main.java.com.util.Vector;
 
 import java.util.List;
-import java.util.Random;
+import java.util.Timer;
 
 public abstract class NonPlayerEntity extends Entity {
 
-    NonPlayerEntity(Vector position, List<TileType> spawnableTileTypes, List<TileType> walkableTileTypes) {
+    public NonPlayerEntity(Vector position, List<TileType> spawnableTileTypes, List<TileType> walkableTileTypes) {
         super(position, spawnableTileTypes, walkableTileTypes);
     }
 
@@ -30,4 +31,11 @@ public abstract class NonPlayerEntity extends Entity {
      * @return true if this entity was removed as a result of the click
      */
     public abstract boolean click();
+
+    protected void remove(Timer timer) {
+        Tile tile = Terrain.grid.get(getGridPosition());
+        EntityManager.nonPlayerEntities.remove(this);
+        tile.removeOccupier(this);
+        timer.cancel();
+    }
 }

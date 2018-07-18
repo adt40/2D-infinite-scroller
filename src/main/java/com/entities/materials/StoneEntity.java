@@ -1,5 +1,8 @@
-package main.java.com.entities;
+package main.java.com.entities.materials;
 
+import main.java.com.entities.EntityManager;
+import main.java.com.entities.NonPlayerEntity;
+import main.java.com.entities.droppable.StoneDropEntity;
 import main.java.com.items.InventoryItem;
 import main.java.com.items.tools.PickAxe;
 import main.java.com.terrain.Terrain;

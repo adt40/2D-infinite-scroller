@@ -1,7 +1,6 @@
 package main.java.com.ai;
 
 import main.java.com.entities.Entity;
-import main.java.com.entities.EntityManager;
 import main.java.com.entities.NonPlayerEntity;
 import main.java.com.terrain.Terrain;
 import main.java.com.terrain.Tile;
@@ -57,5 +56,6 @@ public class StandardAI {
 
     static void attack(NonPlayerEntity entity, Entity target) {
         //TODO: Health and damage
+        System.out.println(entity.getClass().toString() + " attacked " + target.getClass().toString());
     }
 }

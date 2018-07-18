@@ -6,6 +6,7 @@ import main.java.com.terrain.Terrain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class AStar {
     public static List<Vector> getPath(Vector start, Vector goal, Entity entity, int maxDepth) {
@@ -19,40 +20,43 @@ public class AStar {
         fScore.put(start, start.distanceTo(goal)); //heuristic
         int depth = 0;
         while (openSet.size() != 0 && depth <= maxDepth) {
-            Vector current = openSet.stream().reduce((x, y) -> fScore.get(x).compareTo(fScore.get(y)) <= 0 ? x : y).get();
-            if (current.equals(goal)) {
-                return reconstructPath(cameFrom, current);
-            }
-
-            openSet.remove(current);
-            closedSet.add(current);
-
-            List<Vector> neighbors = new ArrayList<>();
-            for (int i = 0; i < 4; i++) {
-                Vector direction = Vector.getVectorFromDirectionInt(i);
-                Vector possibleNewPosition = entity.getGridPosition().add(direction);
-                if (entity.isTileWalkable(Terrain.grid.get(possibleNewPosition))) {
-                    neighbors.add(current.add(direction));
-                }
-            }
-
-            for (int i = 0; i < neighbors.size(); i++) {
-                Vector neighbor = neighbors.get(i);
-                if (closedSet.contains(neighbor)) {
-                    continue;
+            Optional<Vector> possibleCurrent = openSet.stream().reduce((x, y) -> fScore.get(x).compareTo(fScore.get(y)) <= 0 ? x : y);
+            if (possibleCurrent.isPresent()) {
+                Vector current = possibleCurrent.get();
+                if (current.equals(goal)) {
+                    return reconstructPath(cameFrom, current);
                 }
 
-                Double tentativeGScore = gScore.get(current) + current.distanceTo(neighbor);
+                openSet.remove(current);
+                closedSet.add(current);
 
-                if (!openSet.contains(neighbor)) {
-                    openSet.add(neighbor);
-                } else if (tentativeGScore >= gScore.get(neighbor)) {
-                    continue;
+                List<Vector> neighbors = new ArrayList<>();
+                for (int i = 0; i < 4; i++) {
+                    Vector direction = Vector.getVectorFromDirectionInt(i);
+                    Vector possibleNewPosition = entity.getGridPosition().add(direction);
+                    if (entity.isTileWalkable(Terrain.grid.get(possibleNewPosition))) {
+                        neighbors.add(current.add(direction));
+                    }
                 }
 
-                cameFrom.put(neighbor, current);
-                gScore.put(neighbor, tentativeGScore);
-                fScore.put(neighbor, gScore.get(neighbor) + neighbor.distanceTo(goal));
+                for (int i = 0; i < neighbors.size(); i++) {
+                    Vector neighbor = neighbors.get(i);
+                    if (closedSet.contains(neighbor)) {
+                        continue;
+                    }
+
+                    Double tentativeGScore = gScore.get(current) + current.distanceTo(neighbor);
+
+                    if (!openSet.contains(neighbor)) {
+                        openSet.add(neighbor);
+                    } else if (tentativeGScore >= gScore.get(neighbor)) {
+                        continue;
+                    }
+
+                    cameFrom.put(neighbor, current);
+                    gScore.put(neighbor, tentativeGScore);
+                    fScore.put(neighbor, gScore.get(neighbor) + neighbor.distanceTo(goal));
+                }
             }
             depth++;
         }

@@ -1,6 +1,8 @@
-package main.java.com.entities;
+package main.java.com.entities.alive;
 
 import main.java.com.ai.ZombieAI;
+import main.java.com.entities.EntityManager;
+import main.java.com.entities.NonPlayerEntity;
 import main.java.com.items.InventoryItem;
 import main.java.com.items.tools.Sword;
 import main.java.com.terrain.Terrain;
@@ -44,10 +46,7 @@ public class ZombieEntity extends NonPlayerEntity {
     public boolean click() {
         InventoryItem item = EntityManager.player.getSelectedItem();
         if (item instanceof Sword && ((Sword) item).isWithinRange(getGridPosition())) {
-            Tile tile = Terrain.grid.get(getGridPosition());
-            EntityManager.nonPlayerEntities.remove(this);
-            tile.removeOccupier(this);
-            timer.cancel();
+            remove(timer);
             return true;
         }
         return false;

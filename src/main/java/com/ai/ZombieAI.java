@@ -2,7 +2,7 @@ package main.java.com.ai;
 
 import main.java.com.entities.EntityManager;
 import main.java.com.entities.NonPlayerEntity;
-import main.java.com.entities.ZombieEntity;
+import main.java.com.entities.alive.ZombieEntity;
 import main.java.com.util.Vector;
 
 import java.util.TimerTask;
@@ -27,7 +27,16 @@ public class ZombieAI extends TimerTask {
      * If the zombie reaches the tile and doesn't see the player, it will go back to wandering
      */
     public void run() {
-        checkLineOfSight();
+
+        //update state
+        Double distanceToPlayer = EntityManager.player.getGridPosition().distanceTo(zombieEntity.getGridPosition());
+        if (distanceToPlayer <= 1) {
+            state = 2;
+        } else {
+            checkLineOfSight(distanceToPlayer);
+        }
+
+        //select action based on the state
         if (state == 0) {
             StandardAI.wander(zombieEntity);
         } else if (state == 1) {
@@ -36,12 +45,12 @@ public class ZombieAI extends TimerTask {
                 state = 0;
                 zombieEntity.setIsTargetting(false);
             }
+        } else if (state == 2) {
+            StandardAI.attack(zombieEntity, EntityManager.player);
         }
     }
 
-    private void checkLineOfSight() {
-        Double distanceToPlayer = EntityManager.player.getGridPosition().distanceTo(zombieEntity.getGridPosition());
-
+    private void checkLineOfSight(Double distanceToPlayer) {
         //Check distance
         if (distanceToPlayer <= 6) {
             boolean intersects = false;

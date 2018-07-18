@@ -27,6 +27,8 @@ public class DisplayGraphics extends JPanel {
         addMouseListener(userInputManager);
         addMouseWheelListener(userInputManager);
 
+        EntityManager.init();
+
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override

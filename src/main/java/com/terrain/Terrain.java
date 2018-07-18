@@ -1,6 +1,8 @@
 package main.java.com.terrain;
 
 import main.java.com.entities.*;
+import main.java.com.entities.alive.*;
+import main.java.com.entities.materials.MountainStoneBlockEntity;
 import main.java.com.util.Vector;
 
 import java.util.ArrayList;
@@ -49,6 +51,8 @@ public class Terrain {
             EntityManager.nonPlayerEntities.add(new MountainStoneBlockEntity(gridCoordinate));
         } else if (ZombieEntity.shouldSpawn(tileType, gridCoordinate)) {
             EntityManager.nonPlayerEntities.add(new ZombieEntity(gridCoordinate));
+        } else if (FishEntity.shouldSpawn(tileType, gridCoordinate)) {
+            EntityManager.nonPlayerEntities.add(new FishEntity(gridCoordinate));
         }
     }
 }
