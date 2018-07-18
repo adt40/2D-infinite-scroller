@@ -1,6 +1,6 @@
 package main.java.com.entities;
 
-import main.java.com.ai.WalkerAI;
+import main.java.com.ai.ZombieAI;
 import main.java.com.items.InventoryItem;
 import main.java.com.items.tools.Sword;
 import main.java.com.terrain.Terrain;
@@ -14,23 +14,26 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 
-public class Walker extends NonPlayerEntity {
+public class ZombieEntity extends NonPlayerEntity {
 
-    private static final List<TileType> SPAWNABLE_TILES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST);
+    private static final java.util.List<TileType> SPAWNABLE_TILES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST);
     private static final List<TileType> WALKABLE_TILES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
     private static final Double SPAWN_PROBABILITY = 0.01;
 
-    public Walker(Vector position) {
+    private Timer timer;
+    private boolean isTargetting;
+
+    public ZombieEntity(Vector position) {
         super(position, SPAWNABLE_TILES, WALKABLE_TILES);
 
         Tile tile = Terrain.grid.get(position);
         tile.addOccupier(this);
 
-        Timer timer = new Timer();
-        WalkerAI walkerAI = new WalkerAI(this);
+        timer = new Timer();
+        ZombieAI zombieAI = new ZombieAI(this);
         Random random = new Random();
         int period = random.nextInt(1000) + 500;
-        timer.schedule(walkerAI, 500, period);
+        timer.schedule(zombieAI, 500, period);
     }
 
     public static boolean shouldSpawn(TileType tileType, Vector gridCoordinate) {
@@ -38,20 +41,29 @@ public class Walker extends NonPlayerEntity {
     }
 
     @Override
-    public void paint(Graphics g, int xPos, int yPos, int gridSize) {
-        g.setColor(Color.BLACK);
-        g.fillOval(xPos, yPos, gridSize, gridSize);
-    }
-
-    @Override
     public boolean click() {
         InventoryItem item = EntityManager.player.getSelectedItem();
         if (item instanceof Sword && ((Sword) item).isWithinRange(getGridPosition())) {
             Tile tile = Terrain.grid.get(getGridPosition());
-            tile.removeOccupier(this);
             EntityManager.nonPlayerEntities.remove(this);
+            tile.removeOccupier(this);
+            timer.cancel();
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void paint(Graphics g, int xPos, int yPos, int gridSize) {
+        if (isTargetting) {
+            g.setColor(new Color(162, 47, 0));
+        } else {
+            g.setColor(new Color(19, 71, 0));
+        }
+        g.fillOval(xPos, yPos, gridSize, gridSize);
+    }
+
+    public void setIsTargetting(boolean isTargetting) {
+        this.isTargetting = isTargetting;
     }
 }

@@ -37,9 +37,7 @@ public class Tile {
         occupyingEntities.add(entity);
     }
 
-    public void removeOccupier(Entity entity) {
-        occupyingEntities.remove(entity);
-    }
+    public void removeOccupier(Entity entity) { occupyingEntities.remove(entity); }
 
     public List<Entity> getOccupyingEntities() {
         return occupyingEntities;

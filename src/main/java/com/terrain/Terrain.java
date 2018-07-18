@@ -39,14 +39,16 @@ public class Terrain {
     }
 
     public static void spawnEntities(TileType tileType, Vector gridCoordinate) {
-        if (Walker.shouldSpawn(tileType, gridCoordinate)) {
-            EntityManager.nonPlayerEntities.add(new Walker(gridCoordinate));
-        } else if (Flier.shouldSpawn(tileType, gridCoordinate)) {
-            EntityManager.nonPlayerEntities.add(new Flier(gridCoordinate));
-        } else if (Tree.shouldSpawn(tileType, gridCoordinate)) {
-            EntityManager.nonPlayerEntities.add(new Tree(gridCoordinate));
+        if (WalkerEntity.shouldSpawn(tileType, gridCoordinate)) {
+            EntityManager.nonPlayerEntities.add(new WalkerEntity(gridCoordinate));
+        } else if (FlierEntity.shouldSpawn(tileType, gridCoordinate)) {
+            EntityManager.nonPlayerEntities.add(new FlierEntity(gridCoordinate));
+        } else if (TreeEntity.shouldSpawn(tileType, gridCoordinate)) {
+            EntityManager.nonPlayerEntities.add(new TreeEntity(gridCoordinate));
         } else if (MountainStoneBlockEntity.shouldSpawn(tileType, gridCoordinate)) {
             EntityManager.nonPlayerEntities.add(new MountainStoneBlockEntity(gridCoordinate));
+        } else if (ZombieEntity.shouldSpawn(tileType, gridCoordinate)) {
+            EntityManager.nonPlayerEntities.add(new ZombieEntity(gridCoordinate));
         }
     }
 }

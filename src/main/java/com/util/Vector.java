@@ -60,6 +60,14 @@ public class Vector {
         return Math.sqrt(Math.pow(other.getX() - x, 2) + Math.pow(other.getY() - y, 2));
     }
 
+    public Double magnitude() {
+        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+    }
+
+    public Vector unit() {
+        return multiplyByScalar(magnitude());
+    }
+
     public static Vector getVectorFromDirectionInt(int directionValue) {
         switch (directionValue) {
             case 0:

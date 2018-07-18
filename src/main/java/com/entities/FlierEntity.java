@@ -14,19 +14,21 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 
-public class Flier extends NonPlayerEntity {
+public class FlierEntity extends NonPlayerEntity {
 
     private static final List<TileType> SPAWNABLE_TILES = Arrays.asList(TileType.WATER, TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
     private static final List<TileType> WALKABLE_TILES = Arrays.asList(TileType.WATER, TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
     private static final Double SPAWN_PROBABILITY = 0.005;
 
-    public Flier(Vector position) {
+    private Timer timer;
+
+    public FlierEntity(Vector position) {
         super(position, SPAWNABLE_TILES, WALKABLE_TILES);
 
         Tile tile = Terrain.grid.get(position);
         tile.addOccupier(this);
 
-        Timer timer = new Timer();
+        timer = new Timer();
         FlierAI flierAI = new FlierAI(this);
         Random random = new Random();
         int period = random.nextInt(750) + 250;
@@ -50,6 +52,7 @@ public class Flier extends NonPlayerEntity {
             Tile tile = Terrain.grid.get(getGridPosition());
             tile.removeOccupier(this);
             EntityManager.nonPlayerEntities.remove(this);
+            timer.cancel();
             return true;
         }
         return false;

@@ -2,33 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9bd6c536-9865-4690-ba46-95c25c3779ed" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/entities/MountainStoneBlockEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/entities/StoneBlockEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/entities/StoneDropEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/entities/StoneEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/entities/WoodBlockEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/entities/WoodenEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/items/PlaceableItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/items/StoneItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ai/StandardAI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ai/ZombieAI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/entities/ZombieEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/util/AStar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/DroppableEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/DroppableEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/Flier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/Flier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/NonPlayerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/NonPlayerEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/Walker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/Walker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/WoodEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/WoodDropEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/graphics/UserInputManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/graphics/UserInputManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/items/InventoryItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/items/InventoryItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/items/WoodItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/items/WoodItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/items/tools/Axe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/items/tools/Axe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/items/tools/Bow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/items/tools/Bow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/items/tools/PickAxe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/items/tools/PickAxe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/items/tools/Sword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/items/tools/Sword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/items/tools/Tool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ai/FlierAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ai/FlierAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ai/WalkerAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ai/WalkerAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/Flier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/FlierEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/TreeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/entities/Walker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entities/WalkerEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/terrain/Terrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terrain/Terrain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terrain/TileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terrain/TileType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terrain/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terrain/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/util/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/util/Vector.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,8 +29,8 @@
       <file leaf-file-name="DisplayGraphics.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/DisplayGraphics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="93" column="5" lean-forward="true" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
+            <state relative-caret-position="204">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,25 +38,110 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StoneBlockEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/StoneBlockEntity.java">
+      <file leaf-file-name="Tile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/terrain/Tile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="211">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#216#217#0" expanded="true" />
-                <element signature="e#297#298#0" expanded="true" />
+                <element signature="e#675#676#0" expanded="true" />
+                <element signature="e#727#728#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Walker.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/Walker.java">
+      <file leaf-file-name="WalkerAI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ai/WalkerAI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="19" column="156" selection-start-line="19" selection-start-column="156" selection-end-line="19" selection-end-column="156" />
+            <state relative-caret-position="238">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+              <folding>
+                <element signature="e#442#443#0" expanded="true" />
+                <element signature="e#474#475#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZombieAI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ai/ZombieAI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3129#3130#0" expanded="true" />
+                <element signature="e#3172#3173#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZombieEntity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/ZombieEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="482">
+              <caret line="65" column="11" selection-start-line="65" selection-start-column="11" selection-end-line="65" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2221#2222#0" expanded="true" />
+                <element signature="e#2269#2270#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Vector.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/util/Vector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
+              <folding>
+                <element signature="e#418#419#0" expanded="true" />
+                <element signature="e#577#578#0" expanded="true" />
+                <element signature="e#646#647#0" expanded="true" />
+                <element signature="e#1367#1368#0" expanded="true" />
+                <element signature="e#1391#1392#0" expanded="true" />
+                <element signature="e#1464#1465#0" expanded="true" />
+                <element signature="e#1497#1498#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StandardAI.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ai/StandardAI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AStar.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/util/AStar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserInputManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/UserInputManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="128" column="24" lean-forward="true" selection-start-line="128" selection-start-column="24" selection-end-line="128" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -103,17 +174,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/graphics/WorldWindow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/graphics/WorldPanel.java" />
-        <option value="$PROJECT_DIR$/src/test/PerlinNoiseTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/terrain/AbstractNoiseGenerator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/terrain/INoiseGenerator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/entities/ai/WalkerAI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ai/WalkerAI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/terrain/PerlinNoise.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/terrain/SimplexNoise.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entities/EntityHolder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/util/Vector.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tools/Tool.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tools/Sword.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tools/Bow.java" />
@@ -121,7 +183,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tools/Axe.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/items/tools/InventoryItem.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entities/InstantiatedEntities.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/terrain/Tile.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ai/FlierAI.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/execution/Runner.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entities/EntityManager.java" />
@@ -141,7 +202,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/entities/WoodWallEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entities/StoneDropEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/items/StoneItem.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/terrain/Terrain.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entities/Entity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entities/NonPlayerEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entities/Flier.java" />
@@ -154,6 +214,17 @@
         <option value="$PROJECT_DIR$/src/main/java/com/entities/StoneBlockEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entities/WoodBlockEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entities/Walker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/terrain/Terrain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/terrain/Tile.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/entities/WalkerEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/entities/FlierEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ai/StandardAIMethods.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ai/WalkerAI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/util/AStar.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/util/Vector.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/entities/ZombieEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ai/ZombieAI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ai/StandardAI.java" />
       </list>
     </option>
   </component>
@@ -177,7 +248,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -274,6 +344,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -416,7 +487,8 @@
       <workItem from="1531410538949" duration="1132000" />
       <workItem from="1531416558103" duration="9277000" />
       <workItem from="1531484765714" duration="557000" />
-      <workItem from="1531495161783" duration="14788000" />
+      <workItem from="1531495161783" duration="17311000" />
+      <workItem from="1531857478129" duration="14232000" />
     </task>
     <servers />
   </component>
@@ -453,7 +525,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92779000" />
+    <option name="totallyTimeSpent" value="109534000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -468,14 +540,13 @@
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.32908705" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.32908705" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Terminal" order="2" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.14270833" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.14270833" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="5" weight="0.32908705" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
       <window_info id="UI Designer" order="1" />
@@ -488,6 +559,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.32908705" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,38 +570,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="19" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/reflect/Method.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="497" selection-start-line="497" selection-end-line="497" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/model/FrameworkMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/statements/InvokeMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/statements/RunBefores.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -610,20 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ai/WalkerAI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/terrain/Tile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ai/FlierAI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -641,25 +671,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/util/Vector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
-          <folding>
-            <element signature="e#577#578#0" expanded="true" />
-            <element signature="e#646#647#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/awt/event/MouseEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1060">
           <caret line="895" column="15" selection-start-line="895" selection-start-column="15" selection-end-line="895" selection-end-column="15" />
-          <folding>
-            <element signature="e#38432#38433#0" expanded="true" />
-            <element signature="e#38461#38462#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -732,37 +747,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/UserInputManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="115" lean-forward="true" selection-start-line="115" selection-end-line="115" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/EntityManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="83" selection-start-line="7" selection-start-column="83" selection-end-line="7" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/items/StoneItem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/terrain/Terrain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -793,7 +781,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/Tree.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/TreeEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
@@ -833,13 +821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/Flier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="19" column="174" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="174" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/DroppableEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -851,16 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/DisplayGraphics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="93" column="5" lean-forward="true" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -889,7 +860,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/StoneBlockEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#216#217#0" expanded="true" />
@@ -898,10 +869,136 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/Walker.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/EntityManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="19" column="156" selection-start-line="19" selection-start-column="156" selection-end-line="19" selection-end-column="156" />
+        <state relative-caret-position="119">
+          <caret line="7" column="83" selection-start-line="7" selection-start-column="83" selection-end-line="7" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/terrain/Terrain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/DisplayGraphics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/FlierEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/WalkerEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/terrain/Tile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#675#676#0" expanded="true" />
+            <element signature="e#727#728#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ai/WalkerAI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#442#443#0" expanded="true" />
+            <element signature="e#474#475#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/graphics/UserInputManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="128" column="24" lean-forward="true" selection-start-line="128" selection-start-column="24" selection-end-line="128" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/util/AStar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/entities/ZombieEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="65" column="11" selection-start-line="65" selection-start-column="11" selection-end-line="65" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2221#2222#0" expanded="true" />
+            <element signature="e#2269#2270#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/util/Vector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+          <folding>
+            <element signature="e#418#419#0" expanded="true" />
+            <element signature="e#577#578#0" expanded="true" />
+            <element signature="e#646#647#0" expanded="true" />
+            <element signature="e#1367#1368#0" expanded="true" />
+            <element signature="e#1391#1392#0" expanded="true" />
+            <element signature="e#1464#1465#0" expanded="true" />
+            <element signature="e#1497#1498#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ai/ZombieAI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3129#3130#0" expanded="true" />
+            <element signature="e#3172#3173#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ai/StandardAI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

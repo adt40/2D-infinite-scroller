@@ -10,13 +10,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class Tree extends WoodenEntity {
+public class TreeEntity extends WoodenEntity {
 
     private static final List<TileType> SPAWNABLE_TILES = Collections.singletonList(TileType.FOREST);
     private static final List<TileType> WALKABLE_TILES = Collections.emptyList(); //Trees can't walk silly
     private static final Double SPAWN_PROBABILITY = 0.25;
 
-    public Tree(Vector position) {
+    public TreeEntity(Vector position) {
         super(position, SPAWNABLE_TILES, WALKABLE_TILES);
         Tile tile = Terrain.grid.get(position);
         tile.addOccupier(this);
