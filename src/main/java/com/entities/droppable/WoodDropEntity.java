@@ -14,7 +14,7 @@ public class WoodDropEntity extends DroppableEntity {
     }
 
     @Override
-    public void paint(Graphics g, int xPos, int yPos, int gridSize) {
+    public void paint(Graphics2D g, int xPos, int yPos, int gridSize) {
         g.setColor(new Color(98, 66, 0));
         int size = (int)(gridSize * 0.5);
         int offset = (gridSize - size) / 2;

@@ -4,6 +4,6 @@ public class Bow extends Tool {
 
 
     public Bow() {
-        super(1.0, 0.1, 5.0, "Bow");
+        super(10, 100, 5.0, "Bow");
     }
 }

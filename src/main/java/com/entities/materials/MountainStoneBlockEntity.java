@@ -17,7 +17,7 @@ public class MountainStoneBlockEntity extends StoneEntity {
     private static final Double SPAWN_PROBABILITY = 1.0;
 
     public MountainStoneBlockEntity(Vector position) {
-        super(position, SPAWNABLE_TILES, WALKABLE_TILES);
+        super(position, SPAWNABLE_TILES, WALKABLE_TILES, 65);
         Tile tile = Terrain.grid.get(position);
         tile.addOccupier(this);
     }
@@ -27,8 +27,8 @@ public class MountainStoneBlockEntity extends StoneEntity {
     }
 
     @Override
-    public void paint(Graphics g, int xPos, int yPos, int gridSize) {
+    public void paint(Graphics2D g, int xPos, int yPos, int gridSize) {
         g.setColor(new Color(167, 167, 165));
-        g.fillRect(xPos + 1, yPos + 1, gridSize - 2, gridSize - 2);
+        g.fillRect(xPos + 1, yPos + 1, gridSize - 1, gridSize - 1);
     }
 }

@@ -1,8 +1,5 @@
 package main.java.com.terrain;
 
-import main.java.com.entities.*;
-import main.java.com.entities.alive.*;
-import main.java.com.entities.materials.MountainStoneBlockEntity;
 import main.java.com.util.Vector;
 
 import java.util.ArrayList;
@@ -38,21 +35,5 @@ public class Terrain {
         adjacents.add(grid.get(gridCoordinate.add(new Vector(-1, 1))));
         adjacents.add(grid.get(gridCoordinate.add(new Vector(-1, -1))));
         return adjacents;
-    }
-
-    public static void spawnEntities(TileType tileType, Vector gridCoordinate) {
-        if (WalkerEntity.shouldSpawn(tileType, gridCoordinate)) {
-            EntityManager.nonPlayerEntities.add(new WalkerEntity(gridCoordinate));
-        } else if (FlierEntity.shouldSpawn(tileType, gridCoordinate)) {
-            EntityManager.nonPlayerEntities.add(new FlierEntity(gridCoordinate));
-        } else if (TreeEntity.shouldSpawn(tileType, gridCoordinate)) {
-            EntityManager.nonPlayerEntities.add(new TreeEntity(gridCoordinate));
-        } else if (MountainStoneBlockEntity.shouldSpawn(tileType, gridCoordinate)) {
-            EntityManager.nonPlayerEntities.add(new MountainStoneBlockEntity(gridCoordinate));
-        } else if (ZombieEntity.shouldSpawn(tileType, gridCoordinate)) {
-            EntityManager.nonPlayerEntities.add(new ZombieEntity(gridCoordinate));
-        } else if (FishEntity.shouldSpawn(tileType, gridCoordinate)) {
-            EntityManager.nonPlayerEntities.add(new FishEntity(gridCoordinate));
-        }
     }
 }

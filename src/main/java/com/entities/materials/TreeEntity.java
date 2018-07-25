@@ -1,4 +1,4 @@
-package main.java.com.entities.alive;
+package main.java.com.entities.materials;
 
 import main.java.com.entities.materials.WoodenEntity;
 import main.java.com.terrain.Terrain;
@@ -18,7 +18,7 @@ public class TreeEntity extends WoodenEntity {
     private static final Double SPAWN_PROBABILITY = 0.25;
 
     public TreeEntity(Vector position) {
-        super(position, SPAWNABLE_TILES, WALKABLE_TILES);
+        super(position, SPAWNABLE_TILES, WALKABLE_TILES, 65);
         Tile tile = Terrain.grid.get(position);
         tile.addOccupier(this);
     }
@@ -33,7 +33,7 @@ public class TreeEntity extends WoodenEntity {
     }
 
     @Override
-    public void paint(Graphics g, int xPos, int yPos, int gridSize) {
+    public void paint(Graphics2D g, int xPos, int yPos, int gridSize) {
         g.setColor(new Color(0, 214, 68));
         int size = (int)(gridSize * 0.75);
         int offset = (gridSize - size) / 2;

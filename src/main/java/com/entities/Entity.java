@@ -12,13 +12,17 @@ public abstract class Entity {
 
     private Vector position;
     private boolean moved;
+    private Integer maxHealth;
+    private Integer currentHealth;
     private final List<TileType> spawnableTileTypes;
     private final List<TileType> walkableTileTypes;
 
-    public Entity(Vector position, List<TileType> spawnableTileTypes, List<TileType> walkableTileTypes) {
+    public Entity(Vector position, List<TileType> spawnableTileTypes, List<TileType> walkableTileTypes, Integer maxHealth) {
         this.position = position;
         this.spawnableTileTypes = spawnableTileTypes;
         this.walkableTileTypes = walkableTileTypes;
+        this.maxHealth = maxHealth;
+        this.currentHealth = maxHealth;
     }
 
     public Vector getGridPosition() {
@@ -38,6 +42,18 @@ public abstract class Entity {
     public void setMoved(boolean moved) {
         this.moved = moved;
     }
+
+    public Integer getMaxHealth() {
+        return maxHealth;
+    }
+
+    public Integer getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public void dealDamage(Integer amount) { currentHealth -= amount; }
+
+    public boolean isDead() { return currentHealth <= 0; }
 
     public boolean hasChanged() {
         if (moved) {
@@ -74,5 +90,22 @@ public abstract class Entity {
         }
     }
 
-    public abstract void paint(Graphics g, int xPos, int yPos, int gridSize);
+    public abstract void paint(Graphics2D g, int xPos, int yPos, int gridSize);
+
+    protected void paintHealthBar(Graphics2D g, int xPos, int yPos, int gridSize) {
+        if (!currentHealth.equals(maxHealth)) {
+            g.setColor(Color.WHITE);
+            g.setStroke(new BasicStroke(3));
+            int offset = gridSize / 10;
+            int x0 = xPos + offset;
+            int x1 = xPos + gridSize - offset;
+            int y = yPos - offset;
+            g.drawLine(x0, y, x1, y);
+
+            g.setColor(Color.RED);
+            double percentHealthRemaining = 1 - (double)(maxHealth - currentHealth) / (double)maxHealth;
+            int x2 = (int)((x1 - x0) * percentHealthRemaining) + x0;
+            g.drawLine(x0, y, x2, y);
+        }
+    }
 }

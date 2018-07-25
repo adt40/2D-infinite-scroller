@@ -6,6 +6,7 @@ import main.java.com.terrain.Terrain;
 import main.java.com.terrain.Tile;
 import main.java.com.util.Vector;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class StandardAI {
@@ -38,7 +39,7 @@ public class StandardAI {
         boolean trapped = entity.isTrapped();
         if (!trapped) {
             Double minDistanceToGoal = Double.MAX_VALUE;
-            Vector minDirection = new Vector(0, 0);
+            ArrayList<Vector> minDirection = new ArrayList<>();
             for (int i = 0; i < 4; i++) {
                 Vector direction = Vector.getVectorFromDirectionInt(i);
                 Vector possibleNewPosition = entity.getGridPosition().add(direction);
@@ -46,16 +47,16 @@ public class StandardAI {
                     Double distanceToGoal = possibleNewPosition.distanceTo(goal);
                     if (distanceToGoal < minDistanceToGoal) {
                         minDistanceToGoal = distanceToGoal;
-                        minDirection = direction;
+                        minDirection.add(direction);
                     }
                 }
             }
-            entity.move(minDirection);
+            entity.move(minDirection.get(new Random().nextInt(minDirection.size())));
         }
     }
 
-    static void attack(NonPlayerEntity entity, Entity target) {
-        //TODO: Health and damage
-        System.out.println(entity.getClass().toString() + " attacked " + target.getClass().toString());
+    static void attack(NonPlayerEntity entity, Entity target, Integer damage) {
+        //System.out.println(entity.getClass().toString() + " attacked " + target.getClass().toString());
+        target.dealDamage(damage);
     }
 }

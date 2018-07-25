@@ -13,7 +13,7 @@ public class StoneDropEntity extends DroppableEntity {
     }
 
     @Override
-    public void paint(Graphics g, int xPos, int yPos, int gridSize) {
+    public void paint(Graphics2D g, int xPos, int yPos, int gridSize) {
         g.setColor(new Color(167, 167, 165));
         int size = (int)(gridSize * 0.5);
         int offset = (gridSize - size) / 2;

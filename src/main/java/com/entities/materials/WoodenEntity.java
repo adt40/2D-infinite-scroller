@@ -14,21 +14,13 @@ import java.util.List;
 
 public abstract class WoodenEntity extends NonPlayerEntity {
 
-    public WoodenEntity(Vector position, List<TileType> spawnableTiles, List<TileType> walkableTiles) {
-        super(position, spawnableTiles, walkableTiles);
+    public WoodenEntity(Vector position, List<TileType> spawnableTiles, List<TileType> walkableTiles, Integer maxHealth) {
+        super(position, spawnableTiles, walkableTiles, maxHealth, Axe.class);
     }
 
     @Override
-    public boolean click() {
-        InventoryItem item = EntityManager.player.getSelectedItem();
-        if (item instanceof Axe && ((Axe) item).isWithinRange(getGridPosition())) {
-            Tile tile = Terrain.grid.get(getGridPosition());
-            tile.removeOccupier(this);
-            EntityManager.nonPlayerEntities.remove(this);
-            EntityManager.droppableEntities.add(new WoodDropEntity(getGridPosition()));
-            return true;
-        }
-        return false;
+    protected void doOnDeath() {
+        remove();
+        EntityManager.droppableEntities.add(new WoodDropEntity(getGridPosition()));
     }
-
 }

@@ -5,24 +5,20 @@ import main.java.com.items.InventoryItem;
 import main.java.com.util.Vector;
 
 public abstract class Tool extends InventoryItem {
-    private Double baseDamage;
-    private Double baseMiningSpeed;
+    private Integer minDamage;
+    private Integer maxDamage;
     private Double range;
 
-    Tool(Double baseDamage, Double baseMiningSpeed, Double range, String name) {
+    Tool(Integer minDamage, Integer maxDamage, Double range, String name) {
         super(name);
-        this.baseDamage = baseDamage;
-        this.baseMiningSpeed = baseMiningSpeed;
+        this.minDamage = minDamage;
+        this.maxDamage = maxDamage;
         this.range = range;
     }
 
-    public Double getBaseDamage() {
-        return baseDamage;
-    }
+    public Integer getMinDamage() { return minDamage; }
 
-    public Double getBaseMiningSpeed() {
-        return baseMiningSpeed;
-    }
+    public Integer getMaxDamage() { return maxDamage; }
 
     public Double getRange() {
         return range;

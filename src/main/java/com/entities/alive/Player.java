@@ -25,14 +25,14 @@ public class Player extends Entity {
     private int selectedItemIndex;
 
     public Player(Vector position) {
-        super(position, SPAWNABLE_TILES, WALKABLE_TILES);
+        super(position, SPAWNABLE_TILES, WALKABLE_TILES, 100);
         selectedItemIndex = 0;
         items = new ArrayList<>();
         items.add(new Axe());
         items.add(new PickAxe());
         items.add(new Sword());
         items.add(new Bow());
-        items.add(new FishingRod());
+        //items.add(new FishingRod());
     }
 
     public ArrayList<InventoryItem> getItems() {
@@ -58,6 +58,8 @@ public class Player extends Entity {
     public InventoryItem getSelectedItem() {
         return items.get(selectedItemIndex);
     }
+
+    public int getSelectedItemIndex() { return selectedItemIndex; }
 
     @Override
     public void move(Vector direction) {
@@ -89,7 +91,7 @@ public class Player extends Entity {
     public void setSelectedItemIndex(int index) {
         if (index >= 0 && index < items.size()) {
             selectedItemIndex = index;
-            System.out.println(items.get(selectedItemIndex).getName() + " " + items.get(selectedItemIndex).getAmount());
+            //System.out.println(items.get(selectedItemIndex).getName() + " " + items.get(selectedItemIndex).getAmount());
         }
     }
 
@@ -99,13 +101,14 @@ public class Player extends Entity {
         } else {
             selectedItemIndex = (selectedItemIndex + amount) % items.size();
         }
-        System.out.println(items.get(selectedItemIndex).getName() + " " + items.get(selectedItemIndex).getAmount());
+        //System.out.println(items.get(selectedItemIndex).getName() + " " + items.get(selectedItemIndex).getAmount());
     }
 
     @Override
-    public void paint(Graphics g, int xPos, int yPos, int gridSize) {
+    public void paint(Graphics2D g, int xPos, int yPos, int gridSize) {
         g.setColor(Color.RED);
         g.fillOval(xPos, yPos, gridSize, gridSize);
+        paintHealthBar(g, xPos, yPos, gridSize);
     }
 
 }

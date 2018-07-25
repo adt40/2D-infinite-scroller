@@ -6,8 +6,8 @@ import javax.swing.*;
 
 public class Runner {
     public static void main(String args[]) {
-        int windowSize = 500;
-        int gridSize = 16;
+        int windowSize = 700;
+        int gridSize = 32;
         int numOctaves = 5;
         Double frequency = 0.03;
 

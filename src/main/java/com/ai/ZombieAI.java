@@ -32,8 +32,11 @@ public class ZombieAI extends TimerTask {
         Double distanceToPlayer = EntityManager.player.getGridPosition().distanceTo(zombieEntity.getGridPosition());
         if (distanceToPlayer <= 1) {
             state = 2;
-        } else {
+            zombieEntity.setIsTargetting(true);
+        } else if (distanceToPlayer <= 6) {
             checkLineOfSight(distanceToPlayer);
+        } else {
+            state = 0;
         }
 
         //select action based on the state
@@ -46,34 +49,32 @@ public class ZombieAI extends TimerTask {
                 zombieEntity.setIsTargetting(false);
             }
         } else if (state == 2) {
-            StandardAI.attack(zombieEntity, EntityManager.player);
+            StandardAI.attack(zombieEntity, EntityManager.player, 10);
         }
     }
 
     private void checkLineOfSight(Double distanceToPlayer) {
-        //Check distance
-        if (distanceToPlayer <= 6) {
-            boolean intersects = false;
-            Vector directionToPlayer = EntityManager.player.getGridPosition().sub(zombieEntity.getGridPosition());
+        boolean intersects = false;
+        Vector directionToPlayer = EntityManager.player.getGridPosition().sub(zombieEntity.getGridPosition());
 
-            //Check for anything blocking the zombie's view of you
-            for (int i = 0; i < EntityManager.nonPlayerEntities.size(); i++) {
-                NonPlayerEntity entity = EntityManager.nonPlayerEntities.get(i);
-                if (!(entity instanceof ZombieEntity)) {
-                    if (intersection(entity.getGridPosition(), zombieEntity.getGridPosition(), directionToPlayer)) {
-                        intersects = true;
-                        break;
-                    }
+        //Check for anything blocking the zombie's view of you
+        for (int i = 0; i < EntityManager.nonPlayerEntities.size(); i++) {
+            NonPlayerEntity entity = EntityManager.nonPlayerEntities.get(i);
+            if (!(entity instanceof ZombieEntity)) {
+                if (intersection(entity.getGridPosition(), zombieEntity.getGridPosition(), directionToPlayer)) {
+                    intersects = true;
+                    break;
                 }
             }
-
-            //if nothing is blocking the view, set the target position to the player's current position and change state
-            if (!intersects) {
-                targetPosition = EntityManager.player.getGridPosition();
-                state = 1;
-                zombieEntity.setIsTargetting(true);
-            }
         }
+
+        //if nothing is blocking the view, set the target position to the player's current position and change state
+        if (!intersects) {
+            targetPosition = EntityManager.player.getGridPosition();
+            state = 1;
+            zombieEntity.setIsTargetting(true);
+        }
+
     }
 
     private boolean intersection(Vector objectOrigin, Vector rayOrigin, Vector rayDirection) {

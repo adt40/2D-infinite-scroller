@@ -1,7 +1,7 @@
 package main.java.com.ai;
 
 import main.java.com.entities.alive.FlierEntity;
-import main.java.com.entities.alive.TreeEntity;
+import main.java.com.entities.materials.TreeEntity;
 import main.java.com.terrain.Terrain;
 import main.java.com.terrain.Tile;
 import main.java.com.util.Vector;

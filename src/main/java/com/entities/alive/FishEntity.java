@@ -23,7 +23,7 @@ public class FishEntity extends NonPlayerEntity {
     private Timer timer;
 
     public FishEntity(Vector position) {
-        super(position, SPAWNABLE_TILES, WALKABLE_TILES);
+        super(position, SPAWNABLE_TILES, WALKABLE_TILES, 25, FishingRod.class);
 
         Tile tile = Terrain.grid.get(position);
         tile.addOccupier(this);
@@ -40,18 +40,15 @@ public class FishEntity extends NonPlayerEntity {
     }
 
     @Override
-    public void paint(Graphics g, int xPos, int yPos, int gridSize) {
+    public void paint(Graphics2D g, int xPos, int yPos, int gridSize) {
         g.setColor(new Color(0, 157, 161));
         g.fillOval(xPos, yPos, gridSize, gridSize);
+        paintHealthBar(g, xPos, yPos, gridSize);
     }
 
     @Override
-    public boolean click() {
-        InventoryItem item = EntityManager.player.getSelectedItem();
-        if (item instanceof FishingRod && ((FishingRod) item).isWithinRange(getGridPosition())) {
-            remove(timer);
-            return true;
-        }
-        return false;
+    protected void doOnDeath() {
+        remove();
+        timer.cancel();
     }
 }

@@ -25,7 +25,7 @@ public class WalkerEntity extends NonPlayerEntity {
     private Timer timer;
 
     public WalkerEntity(Vector position) {
-        super(position, SPAWNABLE_TILES, WALKABLE_TILES);
+        super(position, SPAWNABLE_TILES, WALKABLE_TILES, 40, Sword.class);
 
         Tile tile = Terrain.grid.get(position);
         tile.addOccupier(this);
@@ -42,18 +42,16 @@ public class WalkerEntity extends NonPlayerEntity {
     }
 
     @Override
-    public void paint(Graphics g, int xPos, int yPos, int gridSize) {
+    public void paint(Graphics2D g, int xPos, int yPos, int gridSize) {
         g.setColor(Color.BLACK);
         g.fillOval(xPos, yPos, gridSize, gridSize);
+        paintHealthBar(g, xPos, yPos, gridSize);
     }
 
+
     @Override
-    public boolean click() {
-        InventoryItem item = EntityManager.player.getSelectedItem();
-        if (item instanceof Sword && ((Sword) item).isWithinRange(getGridPosition())) {
-            remove(timer);
-            return true;
-        }
-        return false;
+    protected void doOnDeath() {
+        remove();
+        timer.cancel();
     }
 }

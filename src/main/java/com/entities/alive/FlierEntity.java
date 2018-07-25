@@ -18,14 +18,14 @@ import java.util.Timer;
 
 public class FlierEntity extends NonPlayerEntity {
 
-    private static final List<TileType> SPAWNABLE_TILES = Arrays.asList(TileType.WATER, TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
+    private static final List<TileType> SPAWNABLE_TILES = Arrays.asList(TileType.WATER, TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST);
     private static final List<TileType> WALKABLE_TILES = Arrays.asList(TileType.WATER, TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
     private static final Double SPAWN_PROBABILITY = 0.005;
 
     private Timer timer;
 
     public FlierEntity(Vector position) {
-        super(position, SPAWNABLE_TILES, WALKABLE_TILES);
+        super(position, SPAWNABLE_TILES, WALKABLE_TILES,30, Bow.class);
 
         Tile tile = Terrain.grid.get(position);
         tile.addOccupier(this);
@@ -42,21 +42,15 @@ public class FlierEntity extends NonPlayerEntity {
     }
 
     @Override
-    public void paint(Graphics g, int xPos, int yPos, int gridSize) {
+    public void paint(Graphics2D g, int xPos, int yPos, int gridSize) {
         g.setColor(new Color(126, 55, 72));
         g.fillOval(xPos, yPos, gridSize, gridSize);
+        paintHealthBar(g, xPos, yPos, gridSize);
     }
 
     @Override
-    public boolean click() {
-        InventoryItem item = EntityManager.player.getSelectedItem();
-        if (item instanceof Bow && ((Bow) item).isWithinRange(getGridPosition())) {
-            Tile tile = Terrain.grid.get(getGridPosition());
-            tile.removeOccupier(this);
-            EntityManager.nonPlayerEntities.remove(this);
-            timer.cancel();
-            return true;
-        }
-        return false;
+    protected void doOnDeath() {
+        remove();
+        timer.cancel();
     }
 }
