@@ -1,9 +1,7 @@
 package main.java.com.entities.alive;
 
 import main.java.com.ai.WalkerAI;
-import main.java.com.entities.EntityManager;
 import main.java.com.entities.NonPlayerEntity;
-import main.java.com.items.InventoryItem;
 import main.java.com.items.tools.Sword;
 import main.java.com.terrain.Terrain;
 import main.java.com.terrain.Tile;

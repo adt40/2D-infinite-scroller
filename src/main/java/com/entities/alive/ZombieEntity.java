@@ -1,9 +1,7 @@
 package main.java.com.entities.alive;
 
 import main.java.com.ai.ZombieAI;
-import main.java.com.entities.EntityManager;
 import main.java.com.entities.NonPlayerEntity;
-import main.java.com.items.InventoryItem;
 import main.java.com.items.tools.Sword;
 import main.java.com.terrain.Terrain;
 import main.java.com.terrain.Tile;
@@ -22,6 +20,8 @@ public class ZombieEntity extends NonPlayerEntity {
     private static final List<TileType> WALKABLE_TILES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
     private static final Double SPAWN_PROBABILITY = 0.01;
 
+    private static boolean hasSpawned = false;
+
     private Timer timer;
     private boolean isTargetting;
 
@@ -39,7 +39,15 @@ public class ZombieEntity extends NonPlayerEntity {
     }
 
     public static boolean shouldSpawn(TileType tileType, Vector gridCoordinate) {
-        return SPAWNABLE_TILES.contains(tileType) && (new Random()).nextDouble() <= SPAWN_PROBABILITY;
+        if (!hasSpawned) {
+            boolean shouldSpawn = SPAWNABLE_TILES.contains(tileType) && (new Random()).nextDouble() <= SPAWN_PROBABILITY;
+            if (shouldSpawn) {
+                hasSpawned = true;
+                return true;
+            }
+        }
+        return false;
+
     }
 
     @Override

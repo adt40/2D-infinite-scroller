@@ -1,13 +1,17 @@
 package main.java.com.graphics;
 
-import main.java.com.entities.*;
-import main.java.com.terrain.*;
+import main.java.com.entities.EntityManager;
+import main.java.com.entities.NonPlayerEntity;
+import main.java.com.terrain.INoiseGenerator;
+import main.java.com.terrain.SimplexNoise;
+import main.java.com.terrain.Terrain;
+import main.java.com.terrain.Tile;
 import main.java.com.util.Vector;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class DisplayGraphics extends JPanel {
 

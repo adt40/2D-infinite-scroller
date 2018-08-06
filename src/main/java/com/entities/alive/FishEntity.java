@@ -1,9 +1,7 @@
 package main.java.com.entities.alive;
 
 import main.java.com.ai.FishAI;
-import main.java.com.entities.EntityManager;
 import main.java.com.entities.NonPlayerEntity;
-import main.java.com.items.InventoryItem;
 import main.java.com.items.tools.FishingRod;
 import main.java.com.terrain.Terrain;
 import main.java.com.terrain.Tile;
@@ -11,8 +9,10 @@ import main.java.com.terrain.TileType;
 import main.java.com.util.Vector;
 
 import java.awt.*;
-import java.util.*;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.Timer;
 
 public class FishEntity extends NonPlayerEntity {
 
