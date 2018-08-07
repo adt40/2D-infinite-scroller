@@ -36,7 +36,7 @@ class StandardAI {
         }
     }
 
-    static void moveTo(NonPlayerEntity entity, Vector goal) {
+    static void moveTo(Vector goal, NonPlayerEntity entity) {
         boolean trapped = entity.isTrapped();
         if (!trapped) {
             Double minDistanceToGoal = Double.MAX_VALUE;

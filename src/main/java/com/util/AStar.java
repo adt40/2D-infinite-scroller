@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This doesn't work for an infinite grid, but it looks cool
+ */
 public class AStar {
     public static List<Vector> getPath(Vector start, Vector goal, Entity entity, int maxDepth) {
         List<Vector> closedSet = new ArrayList<>();

@@ -20,10 +20,8 @@ public class ZombieEntity extends NonPlayerEntity {
     private static final List<TileType> WALKABLE_TILES = Arrays.asList(TileType.GRASS1, TileType.GRASS2, TileType.GRASS3, TileType.FOREST, TileType.MOUNTAIN);
     private static final Double SPAWN_PROBABILITY = 0.01;
 
-    private static boolean hasSpawned = false;
-
     private Timer timer;
-    private boolean isTargetting;
+    private boolean isTargeting;
 
     public ZombieEntity(Vector position) {
         super(position, SPAWNABLE_TILES, WALKABLE_TILES, 75, Sword.class);
@@ -39,15 +37,7 @@ public class ZombieEntity extends NonPlayerEntity {
     }
 
     public static boolean shouldSpawn(TileType tileType, Vector gridCoordinate) {
-        if (!hasSpawned) {
-            boolean shouldSpawn = SPAWNABLE_TILES.contains(tileType) && (new Random()).nextDouble() <= SPAWN_PROBABILITY;
-            if (shouldSpawn) {
-                hasSpawned = true;
-                return true;
-            }
-        }
-        return false;
-
+        return SPAWNABLE_TILES.contains(tileType) && (new Random()).nextDouble() <= SPAWN_PROBABILITY;
     }
 
     @Override
@@ -58,7 +48,7 @@ public class ZombieEntity extends NonPlayerEntity {
 
     @Override
     public void paint(Graphics2D g, int xPos, int yPos, int gridSize) {
-        if (isTargetting) {
+        if (isTargeting) {
             g.setColor(new Color(162, 47, 0));
         } else {
             g.setColor(new Color(19, 71, 0));
@@ -67,7 +57,7 @@ public class ZombieEntity extends NonPlayerEntity {
         paintHealthBar(g, xPos, yPos, gridSize);
     }
 
-    public void setIsTargetting(boolean isTargetting) {
-        this.isTargetting = isTargetting;
+    public void setIsTargeting(boolean isTargeting) {
+        this.isTargeting = isTargeting;
     }
 }
