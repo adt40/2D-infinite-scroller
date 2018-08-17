@@ -26,7 +26,9 @@ public class FlierAI extends TimerTask {
         // If you are not sitting on a tree, or you win the coin flip to leave the
         // tree you may or may not be sitting on, or there is no tree under you, move as normal.
         // Otherwise, do nothing. Just tweet a bit or something, idk what birds do.
-        if (!sittingOnTree || random.nextDouble() <= 0.1 || !isTileTree(Terrain.grid.get(flierEntity.getGridPosition()))) {
+        if (!sittingOnTree
+                || random.nextDouble() <= 0.1
+                || !isTileTree(Terrain.grid.get(flierEntity.getGridPosition()))) {
             sittingOnTree = false;
             continueMoving();
         }
@@ -50,6 +52,8 @@ public class FlierAI extends TimerTask {
     }
 
     private boolean isTileTree(Tile tile) {
-        return tile != null && tile.getOccupyingEntities() != null && tile.getOccupyingEntities().stream().anyMatch(entity -> entity instanceof TreeEntity);
+        return tile != null
+                && tile.getOccupyingEntities() != null
+                && tile.getOccupyingEntities().stream().anyMatch(entity -> entity instanceof TreeEntity);
     }
 }

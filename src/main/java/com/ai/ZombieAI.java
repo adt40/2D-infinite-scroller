@@ -13,8 +13,7 @@ public class ZombieAI extends TimerTask {
 
     private Vector targetPosition;
     private int state;
-
-
+    
     public ZombieAI(ZombieEntity zombieEntity) {
         this.zombieEntity = zombieEntity;
         state = 0;
@@ -34,21 +33,6 @@ public class ZombieAI extends TimerTask {
         performStatefulAction();
     }
 
-    private void performStatefulAction() {
-        if (state == 0) {
-            StandardAI.wander(zombieEntity);
-        } else if (state == 1) {
-            StandardAI.moveTo(targetPosition, zombieEntity);
-            if (zombieEntity.getGridPosition().equals(targetPosition)) {
-                state = 0;
-                zombieEntity.setIsTargeting(false);
-                targetPosition = null;
-            }
-        } else if (state == 2) {
-            StandardAI.attack(zombieEntity, EntityManager.player, 10);
-        }
-    }
-
     private void updateState() {
         Double distanceToPlayer = EntityManager.player.getGridPosition().distanceTo(zombieEntity.getGridPosition());
         if (distanceToPlayer <= 1) {
@@ -57,17 +41,31 @@ public class ZombieAI extends TimerTask {
         } else if (state == 2) {
             state = 0;
             zombieEntity.setIsTargeting(false);
-        } else if (distanceToPlayer <= 6) {
-            boolean intersects = StandardAI.isLineOfSight(zombieEntity, EntityManager.player, distanceToPlayer);
-
-            //if nothing is blocking the view, set the target position to the player's current position and change state
-            if (!intersects) {
-                targetPosition = EntityManager.player.getGridPosition();
-                state = 1;
-                zombieEntity.setIsTargeting(true);
-            }
+        } else if (distanceToPlayer <= 6 && !StandardAI.isLineOfSight(zombieEntity, EntityManager.player, distanceToPlayer)) {
+            targetPosition = EntityManager.player.getGridPosition();
+            state = 1;
+            zombieEntity.setIsTargeting(true);
         } else if (targetPosition == null) {
             state = 0;
+        }
+    }
+
+    private void performStatefulAction() {
+        switch (state) {
+            case 0:
+                StandardAI.wander(zombieEntity);
+                break;
+            case 1:
+                StandardAI.moveTo(targetPosition, zombieEntity);
+                if (zombieEntity.getGridPosition().equals(targetPosition)) {
+                    state = 0;
+                    zombieEntity.setIsTargeting(false);
+                    targetPosition = null;
+                }
+                break;
+            case 2:
+                StandardAI.attack(zombieEntity, EntityManager.player, 10);
+                break;
         }
     }
 }

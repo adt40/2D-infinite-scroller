@@ -11,15 +11,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 class StandardAI {
+
     static void wander(NonPlayerEntity entity) {
         boolean trapped = entity.isTrapped();
         if (!trapped) {
-
             Random random = new Random();
             boolean isWalkable = false;
             Tile nextTile = null;
             Vector direction = new Vector(0, 0);
-
             while (!isWalkable) {
                 int directionValue = random.nextInt(4);
                 direction = Vector.getVectorFromDirectionInt(directionValue);
